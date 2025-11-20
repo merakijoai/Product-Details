@@ -54,27 +54,116 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <!-- Language Toggle -->
-    <div class="lang-toggle" aria-label="Language selector">
-      <button class="lang-btn active" data-lang="en" aria-label="English">
-        EN
-      </button>
-      <button class="lang-btn" data-lang="ar" aria-label="Arabic">AR</button>
-    </div>
-
     <!-- Header -->
     <header class="header" id="header">
       <div class="container">
-        <div class="logo">
-          <img
-            src="logo-dark.svg"
-            alt="Meraki Academy"
-            class="logo-img"
-            id="logo-img"
-          />
+        <div class="header-content">
+          <div class="header-spacer"></div>
+          <div class="logo">
+            <img
+              src="logo.png"
+              alt="Meraki Academy"
+              class="logo-img"
+              id="logo-img"
+            />
+          </div>
+          <nav class="navbar" id="navbar">
+            <ul class="nav-menu" id="nav-menu">
+              <li class="nav-item">
+                <a
+                  href="#learn"
+                  class="nav-link"
+                  data-en="What You'll Learn"
+                  data-ar="ما الذي ستتعلمه"
+                  >What You'll Learn</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  href="#details"
+                  class="nav-link"
+                  data-en="Program Details"
+                  data-ar="تفاصيل البرنامج"
+                  >Program Details</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  href="#pricing"
+                  class="nav-link"
+                  data-en="Pricing"
+                  data-ar="التسعير"
+                  >Pricing</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  href="#faq"
+                  class="nav-link"
+                  data-en="FAQ"
+                  data-ar="الأسئلة الشائعة"
+                  >FAQ</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link cta-nav-link"
+                  href="https://wa.me/00962787875915?text=أودّ التسجيل في برنامج برمج بذكاء لتستقل "
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="sticky-cta-btn"
+                  data-en="Reserve your seat"
+                  data-ar="احجز مقعدك"
+                  >Reserve your seat</a
+                >
+              </li>
+              <li class="nav-item lang-toggle-item">
+                <div class="lang-toggle" aria-label="Language selector">
+                  <button
+                    class="lang-btn active"
+                    data-lang="en"
+                    aria-label="English"
+                  >
+                    EN
+                  </button>
+                  <button class="lang-btn" data-lang="ar" aria-label="Arabic">
+                    AR
+                  </button>
+                </div>
+              </li>
+            </ul>
+            <div class="mobile-lang-toggle">
+              <button
+                class="lang-btn active"
+                data-lang="en"
+                aria-label="English"
+              >
+                EN
+              </button>
+              <button class="lang-btn" data-lang="ar" aria-label="Arabic">
+                AR
+              </button>
+            </div>
+          </nav>
+          <button
+            class="burger-menu"
+            id="burger-menu"
+            aria-label="Toggle menu"
+            aria-expanded="false"
+          >
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+          </button>
         </div>
       </div>
     </header>
+
+    <!-- Floating Bootcamp Button -->
+    <div class="bootcamp-float">
+      <span class="bootcamp-icon">«</span>
+      <span class="bootcamp-text" data-en="22 Week Bootcamp" data-ar="معسكر البرمجة 22 أسبوع">22 Week Bootcamp</span>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
@@ -102,12 +191,14 @@
             <span class="price-new" data-en="300 JOD" data-ar="300 دينار"
               >300 JOD</span
             > -->
-            <span
-              class="badge-text"
-              data-en="Limited Offer"
-              data-ar="عرض لفترة محدودة"
-              >Limited Time Offer</span
-            >
+            <a href="#pricing" class="badge-link">
+              <span
+                class="badge-text"
+                data-en="Limited Offer"
+                data-ar="عرض لفترة محدودة"
+                >Limited Time Offer</span
+              >
+            </a>
           </div>
         </div>
       </div>
@@ -630,9 +721,9 @@
           >
             Ready to Start Your Coding Journey?
           </h2>
-         
+
           <a
-            href="https://wa.me/962787875915/?text=أودّ التسجيل في برنامج برمج بذكاء لتستقل"
+            href="https://wa.me/00962787875915?text=أودّ التسجيل في برنامج برمج بذكاء لتستقل "
             target="_blank"
             rel="noopener noreferrer"
             class="cta-button"
@@ -810,7 +901,7 @@
           data-en="Pricing & Payment"
           data-ar="التسعير والدفع"
         >
-         Payment
+          Payment
         </h2>
 
         <div class="pricing-content">
@@ -865,7 +956,7 @@
               <i class="fas fa-shield-alt"></i>
               <span
                 data-en="Money-Back Guarantee: During the first 2 weeks, if the program doesn't suit you, you can withdraw and get a 100% full refund"
-                data-ar=" خلال أول أسبوعين، إذا لم يناسبك البرنامج، بإمكانك الإنسحاب و إسترداد المبلغ كامل 100%"
+                data-ar=" خلال أول أسبوعين، إذا البرنامج ما ناسبك، بإمكانك تنسحب ويرجع لك المبلغ كامل 100%"
                 >Money-Back Guarantee: During the first 2 weeks, if the program
                 doesn't suit you, you can withdraw and get a 100% full
                 refund</span
@@ -877,10 +968,11 @@
                 data-en="If you continue: The remaining 200 JOD will be paid in 2 installments and fll amount must be completed before week 9"
                 data-ar=" إذا قررت الاستمرار، يتم دفع الـ 200 دينار المتبقية على دفعتين و
 يجب استكمال سداد المبلغ الكامل (300 دينار) قبل الأسبوع التاسع"
-                >If you continue: The remaining 200 JOD will be paid in 2 installments and
-full amount must be completed before week 9</span
+                >If you continue: The remaining 200 JOD will be paid in 2
+                installments and full amount must be completed before week
+                9</span
               >
-            </div> 
+            </div>
           </div>
         </div>
       </div>
@@ -902,7 +994,7 @@ full amount must be completed before week 9</span
     <!-- Sticky CTA Button (Mobile) -->
     <div class="sticky-cta" id="sticky-cta">
       <a
-        href="https://wa.me/962787875915/?text=أودّ التسجيل في برنامج برمج بذكاء لتستقل"
+        href="https://wa.me/00962787875915?text=أودّ التسجيل في برنامج برمج بذكاء لتستقل "
         target="_blank"
         rel="noopener noreferrer"
         class="sticky-cta-btn"
@@ -913,11 +1005,19 @@ full amount must be completed before week 9</span
       </a>
     </div>
 
+    <!-- Floating WhatsApp Button -->
+    <a
+      href="https://wa.me/00962787875915"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="whatsapp-float"
+      aria-label="Contact us on WhatsApp"
+    >
+      <i class="fab fa-whatsapp"></i>
+      <span class="whatsapp-text" data-en="Chat now" data-ar="تواصل معنا">Chat now</span>
+    </a>
+
     <!-- Scripts -->
     <script src="script.js"></script>
   </body>
 </html>
-
-
-
-

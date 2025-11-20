@@ -51,7 +51,7 @@
         // Update logo based on language
         const logoImg = document.getElementById('logo-img');
         if (logoImg) {
-            logoImg.src = lang === 'ar' ? 'logo-light.svg' : 'logo-dark.svg';
+            logoImg.src = 'logo.png';
         }
         
         // Save preference
@@ -89,6 +89,76 @@
     }
     
     window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // ============================================
+    // Burger Menu Toggle
+    // ============================================
+    
+    const burgerMenu = document.getElementById('burger-menu');
+    const navbar = document.getElementById('navbar');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    function toggleMenu() {
+        burgerMenu.classList.toggle('active');
+        navbar.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
+        const isOpen = burgerMenu.classList.contains('active');
+        burgerMenu.setAttribute('aria-expanded', isOpen);
+    }
+    
+    function closeMenu() {
+        burgerMenu.classList.remove('active');
+        navbar.classList.remove('active');
+        document.body.classList.remove('menu-open');
+        burgerMenu.setAttribute('aria-expanded', 'false');
+    }
+    
+    if (burgerMenu) {
+        burgerMenu.addEventListener('click', toggleMenu);
+    }
+    
+    // Close menu when clicking on a nav link and smooth scroll
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                const targetId = href.substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    const headerHeight = header.offsetHeight;
+                    const targetPosition = targetElement.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+                
+                if (window.innerWidth < 896) {
+                    closeMenu();
+                }
+            }
+        });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (window.innerWidth < 896 && 
+            navbar.classList.contains('active') &&
+            !navbar.contains(e.target) &&
+            !burgerMenu.contains(e.target)) {
+            closeMenu();
+        }
+    });
+    
+    // Close menu on window resize if switching to desktop
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 896) {
+            closeMenu();
+        }
+    });
     
     // ============================================
     // Scroll Animations
