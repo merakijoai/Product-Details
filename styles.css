@@ -57,6 +57,13 @@ body {
   color: var(--primary-dark);
   background-color: var(--white);
   overflow-x: hidden;
+  padding-bottom: 80px; /* Space for CTA container when footer is not visible */
+}
+
+@media (max-width: 895px) {
+  body {
+    padding-bottom: 90px; /* Extra space for mobile CTA */
+  }
 }
 
 body[dir="rtl"] {
@@ -1246,15 +1253,59 @@ body[dir="rtl"] .faq-question {
    ============================================ */
 
 .footer {
+  position: relative;
   background: var(--primary-dark);
   color: var(--white);
   padding: var(--spacing-lg) 0;
   text-align: center;
+  z-index: 1000;
+}
+
+.footer.fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 -4px 12px rgba(20, 34, 55, 0.15);
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+  border-radius: 50%;
+  text-decoration: none;
+  transition: var(--transition-normal);
+  font-size: 1.125rem;
+}
+
+.social-link:hover {
+  background: var(--accent-blue);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 108, 253, 0.4);
+}
+
+.social-link:active {
+  transform: translateY(-1px);
 }
 
 .footer-text {
   font-size: 0.9375rem;
   opacity: 0.8;
+  margin-top: var(--spacing-md);
 }
 
 /* ============================================
@@ -1316,30 +1367,54 @@ body[dir="rtl"] .faq-question {
 }
 
 /* ============================================
+    CTA Buttons Container (Grid Layout)
+    ============================================ */
+
+.cta-buttons-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: grid;
+    grid-template-columns: auto 1fr 1fr;
+    gap: 0;
+    z-index: 999;
+    background: transparent;
+    transition: bottom 0.3s ease;
+    /* padding: var(--spacing-sm); */
+    max-width: 100%;
+}
+
+/* @media (max-width: 895px) {
+    .cta-buttons-container {
+        display: none;
+    }
+} */
+
+/* ============================================
     Floating Bootcamp Button
     ============================================ */
 
 .bootcamp-float {
-    position: fixed;
-    bottom: calc(var(--spacing-md) + 75px + var(--spacing-md)); 
-    left: 0;
-    right: auto;
     background: rgb(147, 51, 234);
     color: var(--white);
     padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    /* border-radius: var(--radius-md) 0 0 var(--radius-md); */
     font-size: 0.875rem;
     font-weight: 600;
-    z-index: 996;
     box-shadow: var(--shadow-md);
     transition: var(--transition-normal);
     white-space: nowrap;
     text-align: center;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: var(--spacing-xs);
-    min-height: 40px;
-    height: 40px;
+    min-height: 50px;
+    height: 50px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
 }
 
 .bootcamp-icon {
@@ -1357,19 +1432,36 @@ body[dir="rtl"] .faq-question {
     background: rgb(126, 34, 206);
 }
 
-@media (max-width: 895px) {
-    .bootcamp-float {
-        bottom: calc(var(--spacing-md) + 75px + var(--spacing-md));
-        font-size: 0.75rem;
-        padding: var(--spacing-xs) var(--spacing-sm);
-        min-height: 36px;
-        height: 36px;
-    }
+/* ============================================
+    Reserve Now Button (Center)
+    ============================================ */
+
+.reserve-now-btn {
+    background: var(--accent-blue);
+    color: var(--white);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-normal);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    height: 50px;
+    text-decoration: none;
+    flex: 1;
+    animation: slow-glow-blue 2s ease-in-out infinite;
 }
 
-body[dir="ltr"] .bootcamp-float {
-    left: auto;
-    right: var(--spacing-sm);
+.reserve-now-btn:hover {
+    background: #0052cc;
+    transform: translateY(-2px);
+    animation: none;
+    box-shadow: 0 0 25px rgba(0, 108, 253, 0.7), 0 0 40px rgba(0, 108, 253, 0.5),
+        var(--shadow-lg);
 }
 
 /* ============================================
@@ -1377,17 +1469,12 @@ body[dir="ltr"] .bootcamp-float {
     ============================================ */
 
 .whatsapp-float {
-  position: fixed;
-  bottom: calc(var(--spacing-md) + 75px + var(--spacing-md));
-  right: 0;
-  left: auto;
   background: #25d366;
   color: var(--white);
-  padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: var(--radius-md) 0 0 var(--radius-md);
+  padding: var(--spacing-md) var(--spacing-md);
+  /* border-radius: 0 var(--radius-md) var(--radius-md) 0; */
   font-size: 0.875rem;
   font-weight: 600;
-  z-index: 997;
   box-shadow: var(--shadow-md);
   transition: var(--transition-normal);
   text-decoration: none;
@@ -1396,8 +1483,8 @@ body[dir="ltr"] .bootcamp-float {
   align-items: center;
   justify-content: center;
   gap: var(--spacing-xs);
-  min-height: 40px;
-  height: 40px;
+  min-height: 50px;
+  height: 50px;
 }
 
 .whatsapp-float i {
@@ -1418,25 +1505,18 @@ body[dir="ltr"] .bootcamp-float {
   transform: scale(0.95);
 }
 
-@media (max-width: 895px) {
-    .whatsapp-float {
-        bottom: calc(var(--spacing-md) + 75px + var(--spacing-md));
-        font-size: 0.75rem;
-        padding: var(--spacing-xs) var(--spacing-sm);
-        min-height: 36px;
-        height: 36px;
-    }
-    
-    .whatsapp-float i {
-        font-size: 1rem;
-    }
+/* RTL Support for CTA Buttons Container */
+body[dir="rtl"] .cta-buttons-container {
+    direction: rtl;
 }
 
-body[dir="rtl"] .whatsapp-float {
-    right: auto;
-    left: 0;
+/* body[dir="rtl"] .bootcamp-float {
     border-radius: 0 var(--radius-md) var(--radius-md) 0;
-}
+} */
+
+/* body[dir="rtl"] .whatsapp-float {
+    border-radius: var(--radius-md) 0 0 var(--radius-md);
+} */
 
 /* ============================================
     Animations

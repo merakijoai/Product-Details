@@ -10,7 +10,7 @@
     // Language Toggle Functionality
     // ============================================
     
-    const currentLang = localStorage.getItem('preferredLang') || 'en';
+    const currentLang = localStorage.getItem('preferredLang') || 'ar';
     const langButtons = document.querySelectorAll('.lang-btn');
     const htmlElement = document.documentElement;
     
@@ -47,6 +47,15 @@
                 }
             }
         });
+        
+        // Update reserve-now-btn text
+        const reserveBtn = document.querySelector('.reserve-now-btn');
+        if (reserveBtn) {
+            const reserveText = reserveBtn.getAttribute(`data-${lang}`);
+            if (reserveText) {
+                reserveBtn.textContent = reserveText;
+            }
+        }
         
         // Update logo based on language
         const logoImg = document.getElementById('logo-img');
@@ -261,6 +270,79 @@
         });
         
         ctaObserver.observe(ctaSection);
+    }
+    
+    // ============================================
+    // CTA Container Position Above Footer
+    // ============================================
+    
+    const ctaButtonsContainer = document.querySelector('.cta-buttons-container');
+    const footer = document.querySelector('.footer');
+    
+    if (ctaButtonsContainer && footer) {
+        let lastScrollTop = 0;
+        let isScrollingDown = true;
+        
+        function updateCTAPosition() {
+            const footerRect = footer.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+            const footerTop = footerRect.top;
+            const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Determine scroll direction
+            isScrollingDown = currentScrollTop > lastScrollTop;
+            lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+            
+            // Check if footer's top border has reached or entered the viewport
+            if (footerTop <= viewportHeight) {
+                // Footer's top border has reached the viewport
+                if (isScrollingDown) {
+                    // Scrolling down: make footer fixed and position CTA above it
+                    footer.classList.add('fixed');
+                    const footerHeight = footer.offsetHeight;
+                    ctaButtonsContainer.style.bottom = `${footerHeight}px`;
+                } else {
+                    // Scrolling up: hide footer and keep CTA at bottom
+                    footer.classList.remove('fixed');
+                    ctaButtonsContainer.style.bottom = '0px';
+                }
+            } else {
+                // Footer is still below viewport, remove fixed class and keep CTA at bottom
+                footer.classList.remove('fixed');
+                ctaButtonsContainer.style.bottom = '0px';
+            }
+        }
+        
+        // Update on scroll and resize
+        let ticking = false;
+        function onScroll() {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    updateCTAPosition();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+        
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', updateCTAPosition);
+        
+        // Use IntersectionObserver for better performance
+        // Trigger when footer's top edge enters the viewport
+        const footerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                updateCTAPosition();
+            });
+        }, {
+            threshold: 0,
+            rootMargin: '0px'
+        });
+        
+        footerObserver.observe(footer);
+        
+        // Initial positioning
+        updateCTAPosition();
     }
     
     // ============================================

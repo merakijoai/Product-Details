@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -60,12 +60,18 @@
         <div class="header-content">
           <div class="header-spacer"></div>
           <div class="logo">
-            <img
-              src="logo.png"
-              alt="Meraki Academy"
-              class="logo-img"
-              id="logo-img"
-            />
+            <a
+              href="https://www.meraki-academy.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="logo.png"
+                alt="Meraki Academy"
+                class="logo-img"
+                id="logo-img"
+              />
+            </a>
           </div>
           <nav class="navbar" id="navbar">
             <ul class="nav-menu" id="nav-menu">
@@ -119,28 +125,28 @@
               </li>
               <li class="nav-item lang-toggle-item">
                 <div class="lang-toggle" aria-label="Language selector">
-                  <button
-                    class="lang-btn active"
-                    data-lang="en"
-                    aria-label="English"
-                  >
+                  <button class="lang-btn" data-lang="en" aria-label="English">
                     EN
                   </button>
-                  <button class="lang-btn" data-lang="ar" aria-label="Arabic">
+                  <button
+                    class="lang-btn active"
+                    data-lang="ar"
+                    aria-label="Arabic"
+                  >
                     AR
                   </button>
                 </div>
               </li>
             </ul>
             <div class="mobile-lang-toggle">
-              <button
-                class="lang-btn active"
-                data-lang="en"
-                aria-label="English"
-              >
+              <button class="lang-btn" data-lang="en" aria-label="English">
                 EN
               </button>
-              <button class="lang-btn" data-lang="ar" aria-label="Arabic">
+              <button
+                class="lang-btn active"
+                data-lang="ar"
+                aria-label="Arabic"
+              >
                 AR
               </button>
             </div>
@@ -159,12 +165,42 @@
       </div>
     </header>
 
-    <!-- Floating Bootcamp Button -->
-    <a class="bootcamp-float"  href="https://go.meraki-academy.com/BootcampDetailsWD"
-      target="_blank">
-      <span class="bootcamp-icon">«</span>
-      <span class="bootcamp-text" data-en="22 Week Bootcamp" data-ar="معسكر البرمجة 22 أسبوع">22 Week Bootcamp</span>
-    </a>
+    <!-- CTA Buttons Container -->
+    <div class="cta-buttons-container">
+      <a
+        href="https://www.meraki-academy.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="bootcamp-float"
+      >
+        <span class="bootcamp-icon">«</span>
+        <span
+          class="bootcamp-text"
+          data-en="22 Week Bootcamp"
+          data-ar="معسكر البرمجة 22 أسبوع"
+          >22 Week Bootcamp</span
+        >
+      </a>
+      <a
+        href="https://wa.me/962787875915?text=أودّ التسجيل في برنامج برمج بذكاء لتستقل "
+        target="_blank"
+        rel="noopener noreferrer"
+        class="reserve-now-btn"
+        data-en="Reserve your seat"
+        data-ar="احجز مقعدك"
+      >
+        Reserve your seat
+      </a>
+      <a
+        href="https://wa.me/962787875915"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="whatsapp-float"
+        aria-label="Contact us on WhatsApp"
+      >
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
@@ -982,6 +1018,60 @@
     <!-- Footer -->
     <footer class="footer">
       <div class="container">
+        <div class="footer-social">
+          <a
+            href="https://www.facebook.com/MerakiAcademyJO"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link"
+            aria-label="Facebook"
+          >
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a
+            href="https://www.instagram.com/MerakiAcademyJO"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link"
+            aria-label="Instagram"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a
+            href="https://www.linkedin.com/school/MerakiAcademyJO"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link"
+            aria-label="LinkedIn"
+          >
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a
+            href="https://www.youtube.com/MerakiAcademyJO"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link"
+            aria-label="YouTube"
+          >
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a
+            href="https://twitter.com/MerakiAcademyJO"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link"
+            aria-label="Twitter"
+          >
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a
+            href="mailto:info@meraki-academy.com"
+            class="social-link"
+            aria-label="Email"
+          >
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
         <p
           class="footer-text"
           data-en="© 2025 Meraki Academy. All rights reserved."
@@ -992,7 +1082,7 @@
       </div>
     </footer>
 
-    <!-- Sticky CTA Button (Mobile) -->
+    <!-- Sticky CTA Button (Mobile)
     <div class="sticky-cta" id="sticky-cta">
       <a
         href="https://wa.me/962787875915?text=أودّ التسجيل في برنامج برمج بذكاء لتستقل "
@@ -1004,22 +1094,9 @@
       >
         Reserve your seat
       </a>
-    </div>
-
-    <!-- Floating WhatsApp Button -->
-    <a
-      href="https://wa.me/962787875915"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="whatsapp-float"
-      aria-label="Contact us on WhatsApp"
-    >
-      <i class="fab fa-whatsapp"></i>
-      <span class="whatsapp-text" data-en="Chat now" data-ar="تواصل معنا">Chat now</span>
-    </a>
+    </div> -->
 
     <!-- Scripts -->
     <script src="script.js"></script>
   </body>
 </html>
-
